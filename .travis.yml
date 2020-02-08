@@ -1,0 +1,32 @@
+# language : node_js
+# node_js : 
+#  - "stable"
+# install : "npm install"
+# script : 
+#  - npm test 
+# after_script : npm run coverage
+
+
+  
+services:
+  - postgresql
+before_script:
+  - psql -c 'CREATE DATABASE yourvoice;' -U postgres
+install: npm install
+
+notifications: 
+  email: false
+sudo: false
+
+cache:
+  directories:
+    - 'node_modules'  
+  
+language: node_js
+node_js:
+  - "12.13.0"
+
+scripts:
+  - npm test
+after_success:
+  - npm run coverage

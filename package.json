@@ -1,0 +1,62 @@
+{
+  "name": "your-voice",
+  "version": "1.0.0",
+  "description": "Reporting redflags(corruption) and/or interventions!.",
+  "main": "index.js",
+  "scripts": {
+    "migration": "npm run drop create && npm run create && npm run insert",
+    "dev": "nodemon app.js",
+    "start": " npm run migration && node app.js",
+    "create": "babel-node server/Version-2/database/createTables.js",
+    "drop": "babel-node server/Version-2/database/deleteTables.js",
+    "insert": "babel-node server/Version-2/database/insert.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "npm run drop && npm run create && npm run insert && nyc mocha --exit --require @babel/register --require babel-polyfill --timeout 1000000 ./server/Version-2/tests/*.js"
+  },
+  "nyc": {
+    "exclude": "server/Version-2/tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ally4/Your-Voice.git"
+  },
+  "author": "Ally",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ally4/Your-Voice/issues"
+  },
+  "homepage": "https://github.com/Ally4/Your-Voice#readme",
+  "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
+    "@babel/plugin-transform-runtime": "^7.7.4",
+    "@babel/runtime": "^7.7.4",
+    "@hapi/joi": "^16.1.7",
+    "babel-polyfill": "^6.26.0",
+    "bcrypt": "^3.0.6",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.0.7",
+    "cross-env": "^6.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.2.2",
+    "moment": "^2.24.0",
+    "multer": "^1.4.2",
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.1",
+    "pg": "^7.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
