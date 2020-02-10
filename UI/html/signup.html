@@ -18,11 +18,13 @@
     </div>
         <div class="sign-signup">
             <div class="Sign-signup-box">
-                <form action="home-in.html">
-                    <input id="signin" type="name" placeholder="First-name" required></br>
-                    <input id="signin" type="name" placeholder="Last-name" required></br>
-                    <input id="signin" type="email" placeholder="E-mail" required></br>
-                    <input id="signin" type="password" placeholder="Password" required></br>
+                <form id="try" action="home-in.html">
+                    <input id="signin1" type="name" placeholder="First-name" required></br>
+                    <input id="signin2" type="name" placeholder="Last-name" required></br>
+                    <input id="signin3" type="email" placeholder="E-mail" required></br>
+                    <input id="signin4" type="password" placeholder="Password" required></br>
+                    <input id="signin5" type="number" placeholder="phonenumber" required></br>
+                    <input id="signin6" type="name" placeholder="username" required></br>
                     <button id="enter-signup" type="submit">Signup</button></br>
                 </form></br>
                 <p class="to-signin">Signin!. <a href="signin.html">Here</a></p>
@@ -31,6 +33,27 @@
         <footer class="foo-index">
             <div class="copy"> Copyright &copy; Your voice 2019</div>
         </footer>
+        <script>
+            document.getElementById('try').addEventListener('submit', register);
+            let first = document.getElementById('signin1').value;
+                let last = document.getElementById('signin2').value;
+                let mail = document.getElementById('signin3').value;
+                let pass = document.getElementById('signin4').value;
+                let num = document.getElementById('signin5').value;
+                let user = document.getElementById('signin6').value;
+            function register(){
+                fetch('http://localhost:1234/api/v2/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'content-type': 'application/json'
+                    }, 
+                    body: JSON.stringify({title:title, body:body})
+                })
+                .then((res) => res.json())
+                .then((data) => console.log(data))
+            };
+        </script>
 </body>
         
 </html>
